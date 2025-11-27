@@ -78,7 +78,7 @@ export default function HeroSection() {
                 <div className="w-5 h-5 rounded-full bg-accent flex items-center justify-center flex-shrink-0 mt-1">
                   <span className="text-accent-foreground text-sm font-bold">✓</span>
                 </div>
-                <span className="text-primary-foreground font-medium">Certificação APCD reconhecida</span>
+                <span className="text-primary-foreground font-medium">Certificação APCD Araraquara</span>
               </div>
             </div>
           </div>
