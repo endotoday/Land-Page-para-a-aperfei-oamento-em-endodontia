@@ -5,6 +5,7 @@ import type React from "react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
+import { sendInquiryEmail } from "@/app/actions/send-email"
 
 export default function InquiryForm() {
   const [formData, setFormData] = useState({
@@ -15,6 +16,8 @@ export default function InquiryForm() {
     experience: "",
   })
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState("")
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({
@@ -23,12 +26,27 @@ export default function InquiryForm() {
     })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically send the form data to a server
-    console.log("Form submitted:", formData)
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 3000)
+    setLoading(true)
+    setError("")
+
+    try {
+      const result = await sendInquiryEmail(formData)
+
+      if (result.success) {
+        setSubmitted(true)
+        setFormData({ name: "", email: "", phone: "", dentistry: "", experience: "" })
+        setTimeout(() => setSubmitted(false), 3000)
+      } else {
+        setError(result.error || "Erro ao enviar formulário")
+      }
+    } catch (err) {
+      console.error("Form submission error:", err)
+      setError("Erro ao enviar formulário. Por favor, tente novamente.")
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -100,7 +118,7 @@ export default function InquiryForm() {
                   value={formData.phone}
                   onChange={handleChange}
                   required
-                  placeholder="(16) 99999-9999"
+                  placeholder="(16) 99176-5415"
                   className="w-full px-4 py-2 rounded-md border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                 />
               </div>
@@ -147,13 +165,15 @@ export default function InquiryForm() {
                 </select>
               </div>
 
-              {/* Submit button */}
+              {error && <p className="text-sm text-red-500">{error}</p>}
+
               <Button
                 type="submit"
                 size="lg"
-                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold mt-2"
+                disabled={loading}
+                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold mt-2 disabled:opacity-50"
               >
-                Enviar Solicitação
+                {loading ? "Enviando..." : "Enviar Solicitação"}
               </Button>
 
               <p className="text-xs text-muted-foreground text-center">

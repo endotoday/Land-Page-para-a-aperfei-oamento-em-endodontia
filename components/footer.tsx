@@ -3,7 +3,7 @@
 export default function Footer() {
   const handleWhatsApp = () => {
     window.open(
-      "https://wa.me/551640000000?text=Olá! Gostaria de saber mais sobre o curso de Aperfeiçoamento em Endodontia.",
+      "https://wa.me/551699176541?text=Olá! Gostaria de saber mais sobre o curso de Aperfeiçoamento em Endodontia.",
       "_blank",
     )
   }
@@ -53,7 +53,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-primary-foreground/80">
               <li>
                 <button onClick={handleWhatsApp} className="hover:text-primary-foreground transition">
-                  WhatsApp: (16) 99999-9999
+                  WhatsApp: (16) 99176-5415
                 </button>
               </li>
               <li>📧 contato@endotoday.com.br</li>

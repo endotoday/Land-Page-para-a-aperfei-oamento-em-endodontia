@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 export default function HeroSection() {
   const handleWhatsApp = () => {
     window.open(
-      "https://wa.me/551640000000?text=Olá! Tenho interesse no curso de Aperfeiçoamento em Endodontia.",
+      "https://wa.me/551699176541?text=Olá! Tenho interesse no curso de Aperfeiçoamento em Endodontia.",
       "_blank",
     )
   }
@@ -78,7 +78,7 @@ export default function HeroSection() {
                 <div className="w-5 h-5 rounded-full bg-accent flex items-center justify-center flex-shrink-0 mt-1">
                   <span className="text-accent-foreground text-sm font-bold">✓</span>
                 </div>
-                <span className="text-primary-foreground font-medium">Certificação APCD Araraquara</span>
+                <span className="text-primary-foreground font-medium">Certificação APCD reconhecida</span>
               </div>
             </div>
           </div>
